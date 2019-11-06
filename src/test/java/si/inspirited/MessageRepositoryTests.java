@@ -54,4 +54,12 @@ public class MessageRepositoryTests {
         Integer sizeAfterInsertion = messageRepository.getAllMessages().size();
         assertEquals(sizeBeforeInsertion, sizeAfterInsertion);
     }
+
+    @Test
+    public void addMessageWithEmptyStringInsteadOfContentAndUserName_ifStorageSizeUnchanged_thenCorrect() {
+        Integer sizeBeforeInsertion = messageRepository.getAllMessages().size();
+        messageRepository.addNewMessage("", "");
+        Integer sizeAfterInsertion = messageRepository.getAllMessages().size();
+        assertEquals(sizeBeforeInsertion, sizeAfterInsertion);
+    }
 }
