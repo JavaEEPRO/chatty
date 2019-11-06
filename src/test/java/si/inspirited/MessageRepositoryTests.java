@@ -49,11 +49,9 @@ public class MessageRepositoryTests {
 
     @Test
     public void addMessageWithNullInsteadOfContentAndUserName_ifStorageSizeIsUnchanged_thenCorrect() {
-
         Integer sizeBeforeInsertion = messageRepository.getAllMessages().size();
         messageRepository.addNewMessage(null, null);
         Integer sizeAfterInsertion = messageRepository.getAllMessages().size();
-
         assertEquals(sizeBeforeInsertion, sizeAfterInsertion);
     }
 }
