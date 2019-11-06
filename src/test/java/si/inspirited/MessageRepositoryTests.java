@@ -8,6 +8,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import si.inspirited.persistence.dao.IMessageRepository;
 import si.inspirited.persistence.dao.impl.MessageRepository;
 import si.inspirited.persistence.model.Message;
+import si.inspirited.persistence.model.User;
+
+import java.util.Map;
 
 import static org.junit.Assert.*;
 
@@ -21,9 +24,26 @@ public class MessageRepositoryTests {
     @Test
     public void addNewMessage_whenReturnsExpectedMessage_thenCorrect() {
         String content = "hello test";
-        Message message = new Message(content);
-        Message returnedMessage = messageRepository.addNewMessage(content);
+        String userName = "AnyUserName";
+        Message message = new Message(content, userName);
+        Message returnedMessage = messageRepository.addNewMessage(content, userName);
         message.id = returnedMessage.id = "casted_id";
         assertEquals(message, returnedMessage);
+    }
+
+    @Test
+    public void addTwoMessagesWithSameContent_ifReceivedMapWithExpectedMessages_thenCorrect() {
+        String content = "duplicated content";
+        String userName = "AnyUserName";
+        Message message_1 = messageRepository.addNewMessage(content, userName);
+        Message message_2 = messageRepository.addNewMessage(content, userName);
+
+        Map<String, Message> res = messageRepository.getAllMessages();
+        Message messageReceived_1 = res.get(message_1.id);
+        Message messageReceived_2 = res.get(message_2.id);
+
+        assertEquals(res.size(), 2);
+        assertEquals(message_1, messageReceived_1);
+        assertEquals(message_2, messageReceived_2);
     }
 }

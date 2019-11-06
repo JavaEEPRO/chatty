@@ -11,21 +11,21 @@ import java.util.concurrent.ConcurrentHashMap;
 @Repository
 public class MessageRepository implements IMessageRepository {
 
-    public MessageRepository() {
+    private MessageRepository() {
         this.postedMessages = new ConcurrentHashMap<>(10);
     }
 
     private ConcurrentHashMap<String, Message> postedMessages;
 
     @Override
-    public Message addNewMessage(String content) {
-        Message res = new Message(content);
-        this.postedMessages.put(content, res);
+    public Message addNewMessage(String content, String userName) {
+        Message res = new Message(content, userName);
+        this.postedMessages.put(res.id, res);
         return res;
     }
 
     @Override
-    public Map<User, Message> getAllMessages() {
+    public Map<String, Message> getAllMessages() {
         return null;
     }
 }

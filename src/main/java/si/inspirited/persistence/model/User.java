@@ -20,7 +20,7 @@ public class User {
 
     User opponent;
 
-    Map<User, Message> history;
+    Map<User, String> history;
 
     //
     boolean isNew() {

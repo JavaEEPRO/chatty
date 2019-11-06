@@ -1,13 +1,11 @@
 package si.inspirited.persistence.dao;
 
 import si.inspirited.persistence.model.Message;
-import si.inspirited.persistence.model.User;
-
 import java.util.Map;
 
 public interface IMessageRepository {
 
-    Message addNewMessage(String content);
+    Message addNewMessage(String content, String userName);
 
-    Map<User, Message> getAllMessages();
+    Map<String, Message> getAllMessages();
 }

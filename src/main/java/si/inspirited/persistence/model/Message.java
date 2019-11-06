@@ -15,32 +15,35 @@ public class Message {
         this.posted = LocalDateTime.now();
     }
 
-    public Message(String content) {
+    public Message(String content, String userName) {
         this.id = MessageUtil.generateMessageId();
         this.content = content;
         this.posted = LocalDateTime.now();
+        this.userName = userName;
     }
 
 
-    public String id;     //found it necessary to add, cause multiple users can post messages with the same content
+    public String id;
 
     LocalDateTime posted;
 
     public String content;
 
-    //
+    String userName;
 
+    //
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Message message = (Message) o;
         return Objects.equals(id, message.id) &&
-                Objects.equals(content, message.content);
+                Objects.equals(content, message.content) &&
+                Objects.equals(userName, message.userName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, content);
+        return Objects.hash(id, content, userName);
     }
 }
