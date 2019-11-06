@@ -25,7 +25,7 @@ public class Message {
 
     public String id;
 
-    LocalDateTime posted;
+    public LocalDateTime posted;
 
     public String content;
 

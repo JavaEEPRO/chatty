@@ -20,12 +20,12 @@ public class MessageRepository implements IMessageRepository {
     @Override
     public Message addNewMessage(String content, String userName) {
         Message res = new Message(content, userName);
-        this.postedMessages.put(res.id, res);
+        this.postedMessages.put(res.id, res);       //this id should be inserted to user.history
         return res;
     }
 
     @Override
     public Map<String, Message> getAllMessages() {
-        return null;
+        return this.postedMessages;
     }
 }
