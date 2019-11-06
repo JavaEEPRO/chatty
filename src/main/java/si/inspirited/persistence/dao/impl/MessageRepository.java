@@ -5,6 +5,7 @@ import si.inspirited.persistence.dao.IMessageRepository;
 import si.inspirited.persistence.model.Message;
 import si.inspirited.persistence.model.User;
 
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -31,5 +32,10 @@ public class MessageRepository implements IMessageRepository {
     @Override
     public Map<String, Message> getAllMessages() {
         return this.postedMessages;
+    }
+
+    @Override
+    public List<Message> getAllSortedMessages() {
+        return null;
     }
 }

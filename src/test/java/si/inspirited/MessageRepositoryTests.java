@@ -10,6 +10,7 @@ import si.inspirited.persistence.dao.impl.MessageRepository;
 import si.inspirited.persistence.model.Message;
 import si.inspirited.persistence.model.User;
 
+import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.*;
@@ -61,5 +62,23 @@ public class MessageRepositoryTests {
         messageRepository.addNewMessage("", "");
         Integer sizeAfterInsertion = messageRepository.getAllMessages().size();
         assertEquals(sizeBeforeInsertion, sizeAfterInsertion);
+    }
+
+    @Test
+    public void populateMessageStorage_whenReceivedSortedByLocalDateTime_thenCorrect() {
+        boolean areSorted = true;
+        for (int i = 0; i < 12; i++) {
+            messageRepository.addNewMessage("test message, one of couple (" + i + " of douzen)", "AnyUserName");
+        }
+        List<Message> res = messageRepository.getAllSortedMessages();
+        for (int i = 0; i < 11; i++) {
+            Message current = res.get(i);
+            Message next = res.get(i + 1);
+            if (current.posted.isAfter(next.posted)) {
+                areSorted = false;
+                return;
+            }
+        }
+        assertTrue(areSorted);
     }
 }
