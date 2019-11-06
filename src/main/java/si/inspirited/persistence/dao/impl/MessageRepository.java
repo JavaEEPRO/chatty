@@ -6,13 +6,22 @@ import si.inspirited.persistence.model.Message;
 import si.inspirited.persistence.model.User;
 
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
 public class MessageRepository implements IMessageRepository {
 
+    public MessageRepository() {
+        this.postedMessages = new ConcurrentHashMap<>(10);
+    }
+
+    private ConcurrentHashMap<String, Message> postedMessages;
+
     @Override
     public Message addNewMessage(String content) {
-        return null;
+        Message res = new Message(content);
+        this.postedMessages.put(content, res);
+        return res;
     }
 
     @Override

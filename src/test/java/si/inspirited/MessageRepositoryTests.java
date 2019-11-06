@@ -23,6 +23,7 @@ public class MessageRepositoryTests {
         String content = "hello test";
         Message message = new Message(content);
         Message returnedMessage = messageRepository.addNewMessage(content);
+        message.id = returnedMessage.id = "casted_id";
         assertEquals(message, returnedMessage);
     }
 }
