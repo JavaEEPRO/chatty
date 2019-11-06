@@ -5,9 +5,9 @@ import si.inspirited.persistence.dao.IMessageRepository;
 import si.inspirited.persistence.model.Message;
 import si.inspirited.persistence.model.User;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.stream.Collectors;
 
 @Repository
 public class MessageRepository implements IMessageRepository {
@@ -36,6 +36,11 @@ public class MessageRepository implements IMessageRepository {
 
     @Override
     public List<Message> getAllSortedMessages() {
-        return null;
+        Map<String, Message> unsorted = this.postedMessages;
+        List<Message> toSort = new ArrayList<>(unsorted.values());
+        List<Message> sorted = toSort.stream()
+                                             .sorted(Comparator.comparing(Message::getPosted)) //comparator - how you want to sort it
+                                             .collect(Collectors.toList()); //collector - what you want to collect it to
+        return sorted;
     }
 }

@@ -76,7 +76,7 @@ public class MessageRepositoryTests {
             Message next = res.get(i + 1);
             if (current.posted.isAfter(next.posted)) {
                 areSorted = false;
-                return;
+                i = 12;
             }
         }
         assertTrue(areSorted);

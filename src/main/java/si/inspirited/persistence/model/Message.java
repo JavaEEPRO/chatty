@@ -32,6 +32,11 @@ public class Message {
     String userName;
 
     //
+
+    public LocalDateTime getPosted() {
+        return this.posted;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
