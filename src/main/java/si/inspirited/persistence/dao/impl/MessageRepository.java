@@ -3,8 +3,6 @@ package si.inspirited.persistence.dao.impl;
 import org.springframework.stereotype.Repository;
 import si.inspirited.persistence.dao.IMessageRepository;
 import si.inspirited.persistence.model.Message;
-import si.inspirited.persistence.model.User;
-
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
@@ -36,6 +34,7 @@ public class MessageRepository implements IMessageRepository {
 
     @Override
     public List<Message> getAllSortedMessages() {
+
         Map<String, Message> unsorted = this.postedMessages;
         List<Message> toSort = new ArrayList<>(unsorted.values());
         List<Message> sorted = toSort.stream()

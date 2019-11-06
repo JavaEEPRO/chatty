@@ -8,11 +8,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import si.inspirited.persistence.dao.IMessageRepository;
 import si.inspirited.persistence.dao.impl.MessageRepository;
 import si.inspirited.persistence.model.Message;
-import si.inspirited.persistence.model.User;
-
 import java.util.List;
 import java.util.Map;
-
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
