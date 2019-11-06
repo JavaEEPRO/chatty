@@ -9,4 +9,6 @@ public interface IUserRepository {
     Map<String, User> addNewUser(String name);
 
     Map<String, User> getAllUsers();
+
+    void refreshUsersStorage();
 }

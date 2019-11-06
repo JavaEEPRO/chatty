@@ -21,7 +21,7 @@ public class UserRepository implements IUserRepository {
     @Override
     public Map<String, User> addNewUser(String name) {
         //1. if passed name is null or "", " ", or contains spec chars, or map contains the same name, as received name, then generate another name automatically
-        String regex = "[^a-zA-Z0-9]";
+        String regex = "\\w+";
         if (name == null || "".equals(name.trim()) || !name.matches(regex) || this.loggedUsers.containsKey(name)) {
             name = UserUtil.generateUserName();
         }
@@ -34,5 +34,10 @@ public class UserRepository implements IUserRepository {
     @Override
     public Map<String, User> getAllUsers() {
         return null;
+    }
+
+    @Override
+    public void refreshUsersStorage() {
+        this.loggedUsers = new ConcurrentHashMap<>(10);
     }
 }

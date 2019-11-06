@@ -1,5 +1,6 @@
 package si.inspirited;
 
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +10,8 @@ import si.inspirited.persistence.dao.IUserRepository;
 import si.inspirited.persistence.dao.impl.UserRepository;
 import si.inspirited.persistence.model.User;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
@@ -23,8 +23,8 @@ public class UserRepositoryTests {
 
     @Test
     public void addNewUser_whenReturnsMapWithOneExpectedUser_thenCorrect() {
-        User user = new User();
-        String name = user.setDefaultName();
+        String name = "AnyUserName";
+        User user = new User(name);
         Map<String, User> res = userRepository.addNewUser(name);
         User userReturned = res.get(name);
 
@@ -78,5 +78,30 @@ public class UserRepositoryTests {
         assertEquals(res.size(), 1);
         assertNotEquals(userReturned, new User("/\\***2@\n\t"));
         assertTrue(userReturned.name.startsWith("User_"));
+    }
+
+    @Test
+    public void pushDozenOfUsers_ifReturnsMapWithDeclaredSizeAndExpectedUsers_thenCorrect() {
+        Map<String, User> controlMap = new HashMap();
+        for (int i = 0; i < 12; i++) {
+            String currentName = "OneOfDozen" + i;
+            controlMap.put(currentName, new User(currentName));
+            userRepository.addNewUser(currentName);
+        }
+
+        Map<String, User> res = userRepository.getAllUsers();
+
+        assertEquals(res.size(), controlMap.size());
+
+        for (Map.Entry entry : res.entrySet()) {
+            String currentName = entry.getKey().toString();
+            User currentUser = (User)entry.getValue();
+            assertEquals(controlMap.get(currentName), currentUser);
+        }
+    }
+
+    @After
+    public void refreshUsersStorage() {
+        userRepository.refreshUsersStorage();
     }
 }
