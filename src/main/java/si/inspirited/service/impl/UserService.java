@@ -1,13 +1,14 @@
 package si.inspirited.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import si.inspirited.persistence.dao.IUserRepository;
 import si.inspirited.persistence.model.User;
 import si.inspirited.service.IUserService;
 import java.util.Map;
 
-@Service("userService")
+@Service
 public class UserService implements IUserService {
 
     @Autowired
@@ -15,11 +16,11 @@ public class UserService implements IUserService {
 
     @Override
     public Map<String, User> addNewUser(String name) {
-        return null;
+        return userRepository.addNewUser(name);
     }
 
     @Override
     public Map<String, User> getAllUsers() {
-        return null;
+        return userRepository.getAllUsers();
     }
 }
