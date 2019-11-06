@@ -20,8 +20,8 @@ public class UserRepository implements IUserRepository {
 
     @Override
     public Map<String, User> addNewUser(String name) {
-        //1. if map contains received name, then generate another name automatically
-        if (this.loggedUsers.containsKey(name)) {
+        //1. if passed name is null or map contains received name, then generate another name automatically
+        if (name == null || this.loggedUsers.containsKey(name)) {
             name = UserUtil.generateUserName();
         }
         //2. add user
