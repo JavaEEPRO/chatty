@@ -33,7 +33,7 @@ public class UserRepository implements IUserRepository {
 
     @Override
     public Map<String, User> getAllUsers() {
-        return null;
+        return this.loggedUsers;
     }
 
     @Override
