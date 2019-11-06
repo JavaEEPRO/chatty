@@ -8,6 +8,12 @@ import java.time.LocalDateTime;
 @Getter
 public class Message {
 
+    public Message() {}
+
+    public Message(String content) {
+        this.content = content;
+    }
+
     LocalDateTime posted;
 
     String content;
