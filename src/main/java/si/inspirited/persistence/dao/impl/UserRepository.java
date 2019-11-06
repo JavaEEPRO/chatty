@@ -21,9 +21,9 @@ public class UserRepository implements IUserRepository {
     @Override
     public Map<String, User> addNewUser(String name) {
         //1. if map contains received name, then generate another automatically
-        if (this.loggedUsers.containsKey(name)) {
-            name = UserUtil.generateUserName();
-        }
+//        if (this.loggedUsers.containsKey(name)) {
+//            name = UserUtil.generateUserName();
+//        }
         //2. add user
         User newUser = new User(name);
         this.loggedUsers.put(name, newUser);
