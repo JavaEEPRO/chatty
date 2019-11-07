@@ -21,7 +21,7 @@ public class UserService implements IUserService {
 
     @Override
     public boolean detachUser(String name) {
-        return false;
+        return userRepository.removeUser(name);
     }
 
     @Override

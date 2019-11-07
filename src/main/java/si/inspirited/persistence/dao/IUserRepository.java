@@ -11,4 +11,6 @@ public interface IUserRepository {
     Map<String, User> getAllUsers();
 
     void refreshUsersStorage();
+
+    boolean removeUser(String name);
 }

@@ -40,4 +40,12 @@ public class UserRepository implements IUserRepository {
     public void refreshUsersStorage() {
         this.loggedUsers = new ConcurrentHashMap<>(10);
     }
+
+    @Override
+    public boolean removeUser(String name) {
+        if (name == null || "".equals(name.trim())) { return false; }
+        if (!this.loggedUsers.containsKey(name)) { return false; }
+        this.loggedUsers.remove(name);
+        return true;
+    }
 }
