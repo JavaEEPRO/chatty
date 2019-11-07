@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.client.RestClientTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import si.inspirited.persistence.dao.IUserRepository;
 import si.inspirited.persistence.dao.impl.UserRepository;
@@ -15,7 +16,7 @@ import java.util.*;
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
-@RestClientTest(UserRepository.class)
+@SpringBootTest
 public class UserRepositoryTests {
 
     @Autowired

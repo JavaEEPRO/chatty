@@ -20,6 +20,11 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public boolean detachUser(String name) {
+        return false;
+    }
+
+    @Override
     public Map<String, User> getAllUsers() {
         return userRepository.getAllUsers();
     }

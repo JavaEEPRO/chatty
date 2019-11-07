@@ -8,5 +8,7 @@ public interface IUserService {
 
     Map<String, User> addNewUser(String name);
 
+    boolean detachUser(String name);
+
     Map<String, User> getAllUsers();
 }
