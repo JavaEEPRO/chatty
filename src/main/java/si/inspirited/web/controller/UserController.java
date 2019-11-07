@@ -48,13 +48,27 @@ public class UserController {
     @ResponseBody
     public User successfullyJoined(@PathVariable
                                    Optional<String> name) {
+        messageService.addNewMessage("joined: Hello everybody!", currentUser.name);
 
         return currentUser;
     }
 
-    @RequestMapping(value = { "/messages" }, method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
+    @RequestMapping(value = { "/messages", "/messages/{name}" }, method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
     @ResponseBody
-    public List<Message> refreshSortedMessagesList() {
+    public List<Message> refreshSortedMessagesList(@PathVariable
+                                                   Optional<String> name) {
         return messageService.getAllSortedMessages();
+    }
+
+    @RequestMapping(value = { "messages/{name}/say", "/messages/{name}/say/{content}" }, method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
+    @ResponseBody
+    public RedirectView postMessage(@PathVariable
+                                    String name,
+
+                                    @PathVariable
+                                    String content) {
+        messageService.addNewMessage(name, content);
+
+        return new RedirectView("/messages");
     }
 }
