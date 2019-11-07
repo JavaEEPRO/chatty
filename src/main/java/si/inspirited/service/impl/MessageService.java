@@ -15,12 +15,13 @@ public class MessageService implements IMessageService {
     IMessageRepository messageRepository;
 
     @Override
-    public Message addNewMessage(String content) {
-        return null;
+    public Map<String, Message> addNewMessage(String content, String userName) {
+        messageRepository.addNewMessage(content, userName);
+        return messageRepository.getAllMessages();
     }
 
     @Override
     public Map<String, Message> getAllMessages() {
-        return null;
+        return messageRepository.getAllMessages();
     }
 }

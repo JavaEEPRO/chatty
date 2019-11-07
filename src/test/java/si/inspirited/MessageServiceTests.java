@@ -25,10 +25,11 @@ public class MessageServiceTests {
     @Test
     public void sendMessage_whenReturnedMapWithGivenMessage_thenCorrect() {
         String content = "hello test";
-        messageService.addNewMessage(content);
+        String stubUserName = "SomeUser";
+        messageService.addNewMessage(content, stubUserName);
         Map<String, Message> res = messageService.getAllMessages();
         List<Message> values = new ArrayList<>(res.values());
-        assertEquals(values, 1);
+        assertEquals(values.size(), 1);
         assertEquals(values.get(0).content, content);
     }
 }
