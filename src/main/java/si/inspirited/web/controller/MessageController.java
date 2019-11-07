@@ -31,15 +31,18 @@ public class MessageController {
         return messageService.getAllSortedMessages();
     }
 
-    @RequestMapping(value = { "messages/{name}/say", "/messages/{name}/say/{content}" }, method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
+    @RequestMapping(value = { "/messages/{name}/say/{content}" }, method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
     @ResponseBody
     public RedirectView postMessage(@PathVariable
-                                            String name,
+                                     final String name,
 
                                     @PathVariable
-                                            String content) {
-        messageService.addNewMessage(content, name);
-
+                                     final String content) {
+        if (isUserPresent(name)) { messageService.addNewMessage(content, name); }
         return new RedirectView("/messages");
+    }
+
+    private boolean isUserPresent(String name) {
+        return userService.getAllUsers().containsKey(name);
     }
 }
