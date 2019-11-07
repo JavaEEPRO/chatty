@@ -8,5 +8,5 @@ public interface IMessageService {
 
     Message addNewMessage(String content);
 
-    Map<User, Message> getAllMessages();
+    Map<String, Message> getAllMessages();
 }

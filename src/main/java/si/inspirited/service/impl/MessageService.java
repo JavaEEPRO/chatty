@@ -20,7 +20,7 @@ public class MessageService implements IMessageService {
     }
 
     @Override
-    public Map<User, Message> getAllMessages() {
+    public Map<String, Message> getAllMessages() {
         return null;
     }
 }

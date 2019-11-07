@@ -31,6 +31,8 @@ public class Message {
 
     String userName;
 
+    public String opponentName;
+
     //
 
     public LocalDateTime getPosted() {
