@@ -12,4 +12,6 @@ public interface IMessageRepository {
     Map<String, Message> getAllMessages();
 
     List<Message> getAllSortedMessages();
+
+    void refreshMessagesStorage();
 }

@@ -33,4 +33,9 @@ public class UserService implements IUserService {
     public void refreshUsersStorage() {
         userRepository.refreshUsersStorage();
     }
+
+    @Override
+    public void addHistoryEntry(String userName, String messageId) {
+
+    }
 }

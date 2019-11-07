@@ -13,4 +13,6 @@ public interface IUserService {
     Map<String, User> getAllUsers();
 
     void refreshUsersStorage();
+
+    void addHistoryEntry(String userName, String messageId);
 }

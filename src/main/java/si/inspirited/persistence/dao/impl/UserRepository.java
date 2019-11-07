@@ -48,4 +48,14 @@ public class UserRepository implements IUserRepository {
         this.loggedUsers.remove(name);
         return true;
     }
+
+    @Override
+    public void addHistoryEntry(String userName, String messageId) {
+        if (userName != null && !"".equals(userName.trim()) && messageId != null && !"".equals(messageId.trim())) {
+            User user = this.loggedUsers.get(userName);
+            this.loggedUsers.remove(userName);
+            user.history.add(messageId);
+            this.loggedUsers.put(userName, user);
+        }
+    }
 }

@@ -8,9 +8,11 @@ import java.util.Map;
 
 public interface IMessageService {
 
-    Map<String, Message> addNewMessage(String content, String userName);
+    Message addNewMessage(String content, String userName);
 
     Map<String, Message> getAllMessages();
 
     List<Message> getAllSortedMessages();
+
+    void refreshMessagesStorage();
 }

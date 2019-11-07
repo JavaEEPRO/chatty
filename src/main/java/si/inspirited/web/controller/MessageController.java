@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.RedirectView;
 import si.inspirited.persistence.model.Message;
+import si.inspirited.persistence.model.User;
 import si.inspirited.service.IMessageService;
 import si.inspirited.service.IUserService;
 
@@ -38,10 +39,16 @@ public class MessageController {
 
                                     @PathVariable
                                      final String content) {
-        if (isUserPresent(name)) { messageService.addNewMessage(content, name); }
+        Message message;
+        if (isUserPresent(name)) {
+            message = messageService.addNewMessage(content, name);
+            userService.addHistoryEntry(name, message.id);
+        }
         return new RedirectView("/messages");
     }
 
+
+    //
     private boolean isUserPresent(String name) {
         return userService.getAllUsers().containsKey(name);
     }

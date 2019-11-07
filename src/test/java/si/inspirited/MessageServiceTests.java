@@ -1,5 +1,6 @@
 package si.inspirited;
 
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,5 +56,10 @@ public class MessageServiceTests {
         }
         assertEquals(res.size(), 12);
         assertTrue(areSorted);
+    }
+
+    @After
+    public void refreshMessagesStorage() {
+        messageService.refreshMessagesStorage();
     }
 }

@@ -17,9 +17,8 @@ public class MessageService implements IMessageService {
     IMessageRepository messageRepository;
 
     @Override
-    public Map<String, Message> addNewMessage(String content, String userName) {
-        messageRepository.addNewMessage(content, userName);
-        return messageRepository.getAllMessages();
+    public Message addNewMessage(String content, String userName) {
+        return messageRepository.addNewMessage(content, userName);
     }
 
     @Override
@@ -30,5 +29,10 @@ public class MessageService implements IMessageService {
     @Override
     public List<Message> getAllSortedMessages() {
         return messageRepository.getAllSortedMessages();
+    }
+
+    @Override
+    public void refreshMessagesStorage() {
+        messageRepository.refreshMessagesStorage();
     }
 }

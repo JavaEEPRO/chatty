@@ -5,6 +5,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import si.inspirited.persistence.model.Message;
+import si.inspirited.persistence.model.User;
 import si.inspirited.service.IUserService;
 import si.inspirited.web.controller.MessageController;
 
@@ -34,5 +36,19 @@ public class MessageControllerTests {
         Integer sizeAfterIntrusion = messageController.getSortedMessagesList(optionalName).size();
 
         assertEquals(sizeBeforeIntrusion, sizeAfterIntrusion);
+    }
+
+    @Test
+    public void sayMessage_whenUserHistoryListCapacityIsChanged_thenCorrect() {
+        User user = joinUser();
+        String content = "regular test content";
+        messageController.postMessage(user.name, content);
+        User refreshedEntity = userService.getAllUsers().get(user.name);
+
+        assertEquals(refreshedEntity.history.size(), 1);
+    }
+
+    private User joinUser() {
+        return userService.addNewUser("AnyName");
     }
 }

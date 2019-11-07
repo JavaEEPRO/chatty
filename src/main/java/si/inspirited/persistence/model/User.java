@@ -3,6 +3,8 @@ package si.inspirited.persistence.model;
 import lombok.*;
 import si.inspirited.web.util.UserUtil;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -13,14 +15,15 @@ public class User {
     public User() {}
 
     public User(String name) {
+        this.history = new ArrayList<>();
         this.name = name;
     }
 
     public String name;
 
-    User opponent;
+    User interlocutor;
 
-    Map<User, String> history;
+    public List<String> history;
 
     //
     boolean isNew() {

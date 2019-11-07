@@ -42,4 +42,9 @@ public class MessageRepository implements IMessageRepository {
                                              .collect(Collectors.toList()); //collector - what you want to collect it to
         return sorted;
     }
+
+    @Override
+    public void refreshMessagesStorage() {
+        this.postedMessages = new ConcurrentHashMap<>(10);
+    }
 }

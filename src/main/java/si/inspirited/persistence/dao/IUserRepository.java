@@ -13,4 +13,6 @@ public interface IUserRepository {
     void refreshUsersStorage();
 
     boolean removeUser(String name);
+
+    void addHistoryEntry(String userName, String messageId);
 }
