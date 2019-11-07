@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.RedirectView;
+import si.inspirited.persistence.model.Message;
 import si.inspirited.persistence.model.User;
 import si.inspirited.service.IMessageService;
 import si.inspirited.service.IUserService;
 import si.inspirited.service.impl.UserService;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -35,7 +37,7 @@ public class UserController {
     public RedirectView initNewUser(@PathVariable
                                     Optional<String> name) {
 
-        if (userService.getAllUsers().containsKey(name)) { return new RedirectView("/join/" + name); }
+        if (userService.getAllUsers().containsKey(name)) { return new RedirectView("/welcome/" + name); }
 
         User res = currentUser = userService.addNewUser(name.orElse(""));
 
@@ -46,7 +48,13 @@ public class UserController {
     @ResponseBody
     public User successfullyJoined(@PathVariable
                                    Optional<String> name) {
-        
+
         return currentUser;
+    }
+
+    @RequestMapping(value = { "/messages" }, method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
+    @ResponseBody
+    public List<Message> refreshSortedMessagesList() {
+        return messageService.getAllSortedMessages();
     }
 }
