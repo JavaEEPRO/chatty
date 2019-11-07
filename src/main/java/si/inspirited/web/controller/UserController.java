@@ -15,6 +15,7 @@ import si.inspirited.service.IMessageService;
 import si.inspirited.service.IUserService;
 import si.inspirited.service.impl.UserService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -51,5 +52,12 @@ public class UserController {
         messageService.addNewMessage("joined: Hello everybody!", currentUser.name);
 
         return currentUser;
+    }
+
+    @RequestMapping(value = { "/users", "/users/{name}" }, method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
+    @ResponseBody
+    public List<User> getAllLoggedIn(@PathVariable
+                                     Optional<String> name) {
+        return null;
     }
 }

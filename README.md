@@ -10,6 +10,10 @@ simple chat - test task "simple web app"
      
     /join/{name} -  accepts new user with given name, and returns json with user' fields, where name=name
     
+    /users/{name} - returns json (array) of objects interlocutors, with whom user can start conversation
+    
+    /users - returns json (array) of all users, that are present in chat
+    
     MessageController:
     
     /messages - returns common sorted list with all messages, that were posted 
