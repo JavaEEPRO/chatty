@@ -6,7 +6,7 @@ import java.util.Map;
 
 public interface IUserRepository {
 
-    Map<String, User> addNewUser(String name);
+    User addNewUser(String name);
 
     Map<String, User> getAllUsers();
 

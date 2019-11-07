@@ -19,7 +19,7 @@ public class UserRepository implements IUserRepository {
 
 
     @Override
-    public Map<String, User> addNewUser(String name) {
+    public User addNewUser(String name) {
         //1. if passed name is null or "", " ", or contains spec chars, or map contains the same name, as received name, then generate another name automatically
         String regex = "\\w+";
         if (name == null || "".equals(name.trim()) || !name.matches(regex) || this.loggedUsers.containsKey(name)) {
@@ -28,7 +28,7 @@ public class UserRepository implements IUserRepository {
         //2. add user
         User newUser = new User(name);
         this.loggedUsers.put(name, newUser);
-        return this.loggedUsers;
+        return newUser;
     }
 
     @Override

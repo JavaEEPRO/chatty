@@ -1,6 +1,7 @@
 package si.inspirited;
 
 
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,13 @@ public class UserServiceTests {
 
     }
 
+    @After
+    public void refreshUsersStorage() {
+        userService.refreshUsersStorage();
+    }
+
+
+    //
     private User joinUser() {
         User user = new User("NoNamedUser");
         userService.addNewUser("NoNamedUser");

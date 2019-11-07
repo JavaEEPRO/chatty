@@ -15,7 +15,7 @@ public class UserService implements IUserService {
     IUserRepository userRepository;
 
     @Override
-    public Map<String, User> addNewUser(String name) {
+    public User addNewUser(String name) {
         return userRepository.addNewUser(name);
     }
 
@@ -27,5 +27,10 @@ public class UserService implements IUserService {
     @Override
     public Map<String, User> getAllUsers() {
         return userRepository.getAllUsers();
+    }
+
+    @Override
+    public void refreshUsersStorage() {
+        userRepository.refreshUsersStorage();
     }
 }
