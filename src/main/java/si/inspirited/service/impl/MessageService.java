@@ -29,6 +29,6 @@ public class MessageService implements IMessageService {
 
     @Override
     public List<Message> getAllSortedMessages() {
-        return null;
+        return messageRepository.getAllSortedMessages();
     }
 }
