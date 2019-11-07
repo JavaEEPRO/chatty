@@ -6,6 +6,8 @@ import si.inspirited.persistence.dao.IMessageRepository;
 import si.inspirited.persistence.model.Message;
 import si.inspirited.persistence.model.User;
 import si.inspirited.service.IMessageService;
+
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -23,5 +25,10 @@ public class MessageService implements IMessageService {
     @Override
     public Map<String, Message> getAllMessages() {
         return messageRepository.getAllMessages();
+    }
+
+    @Override
+    public List<Message> getAllSortedMessages() {
+        return null;
     }
 }
