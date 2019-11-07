@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.view.RedirectView;
 import si.inspirited.persistence.model.User;
+import si.inspirited.service.IMessageService;
+import si.inspirited.service.IUserService;
 import si.inspirited.service.impl.UserService;
 
 import java.util.Map;
@@ -20,14 +23,30 @@ import static si.inspirited.web.util.UserUtil.generateUserName;
 public class UserController {
 
     @Autowired
-    UserService userService;
+    IUserService userService;
+
+    @Autowired
+    IMessageService messageService;
+
+    User currentUser;
 
     @RequestMapping(value = { "/join", "/join/{name}" }, method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
     @ResponseBody
-    public User initNewUser(@PathVariable
-                                         Optional<String> name) {
-        User res = userService.addNewUser(name.orElse(""));
+    public RedirectView initNewUser(@PathVariable
+                                    Optional<String> name) {
 
-        return res;
+        if (userService.getAllUsers().containsKey(name)) { return new RedirectView("/join/" + name); }
+
+        User res = currentUser = userService.addNewUser(name.orElse(""));
+
+        return new RedirectView("/welcome/" + res.name);
+    }
+
+    @RequestMapping(value = { "/welcome/{name}" }, method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
+    @ResponseBody
+    public User successfullyJoined(@PathVariable
+                                   Optional<String> name) {
+        
+        return currentUser;
     }
 }
