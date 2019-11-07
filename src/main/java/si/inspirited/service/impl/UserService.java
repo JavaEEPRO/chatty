@@ -1,7 +1,6 @@
 package si.inspirited.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import si.inspirited.persistence.dao.IUserRepository;
 import si.inspirited.persistence.model.User;
@@ -36,6 +35,6 @@ public class UserService implements IUserService {
 
     @Override
     public void addHistoryEntry(String userName, String messageId) {
-
+        userRepository.addHistoryEntry(userName, messageId);
     }
 }
