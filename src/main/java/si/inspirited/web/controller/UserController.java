@@ -58,6 +58,15 @@ public class UserController {
     @ResponseBody
     public List<User> getAllLoggedIn(@PathVariable
                                      Optional<String> name) {
-        return null;
+        Map<String, User> res = userService.getAllUsers();
+        List<User> toList;
+        if (!"".equals(name.orElse("").trim())) {
+            if (res.containsKey(name)) {
+                res.remove(name);
+
+            }
+        }
+        toList = new ArrayList<>(res.values());
+        return toList;
     }
 }
