@@ -26,7 +26,7 @@ public class MessageController {
 
     @RequestMapping(value = { "/messages", "/messages/{name}" }, method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
     @ResponseBody
-    public List<Message> refreshSortedMessagesList(@PathVariable
+    public List<Message> getSortedMessagesList(@PathVariable
                                                            Optional<String> name) {
         return messageService.getAllSortedMessages();
     }

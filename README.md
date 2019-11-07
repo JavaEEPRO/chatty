@@ -6,9 +6,11 @@ simple chat - test task "simple web app"
   
     UserController:
     
-    /join/   -  adds new user with default user name, and returns json with user' fields
+    /join   -  adds new user with default user name, and returns json with user' fields
      
     /join/{name} -  accepts new user with given name, and returns json with user' fields, where name=name
+    
+    MessageController:
     
     /messages - returns common sorted list with all messages, that were posted 
     
