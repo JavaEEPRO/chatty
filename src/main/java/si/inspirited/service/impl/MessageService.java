@@ -18,7 +18,7 @@ public class MessageService implements IMessageService {
 
     @Override
     public Message addNewMessage(String userName, String content) {
-        return messageRepository.addNewMessage(content, userName);
+        return messageRepository.addNewMessage(userName, content);
     }
 
     @Override
