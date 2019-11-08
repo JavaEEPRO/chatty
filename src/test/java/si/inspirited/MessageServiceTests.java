@@ -1,7 +1,9 @@
 package si.inspirited;
 
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -42,7 +44,7 @@ public class MessageServiceTests {
         boolean areSorted = true;
         for (int i = 0; i < 12; i++) {
             content = "message " + i;
-            messageService.addNewMessage(content, stubUserName);
+            messageService.addNewMessage(stubUserName, content);
         }
         List<Message> res = messageService.getAllSortedMessages();
 
@@ -58,6 +60,7 @@ public class MessageServiceTests {
         assertTrue(areSorted);
     }
 
+    @Before
     @After
     public void refreshMessagesStorage() {
         messageService.refreshMessagesStorage();
