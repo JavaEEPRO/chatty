@@ -83,6 +83,17 @@ public class MessageControllerTests {
         assertEquals(sizeBeforeMessagePosted, sizeAfterMessagePosted);
     }
 
+    @Test
+    public void sayAddressedMessageToSenderHimself_whenReceivedMessagesListIsUnchanged_thenCorrect() {
+        String content = "recursive message";
+        User sender = joinUser();
+        Integer sizeBeforeMessagePosted = messageController.getSortedMessagesList(Optional.of("")).size();
+        messageController.addressedMessage(sender.name, sender.name, content);
+        Integer sizeAfterMessagePosted = messageController.getSortedMessagesList(Optional.of("")).size();
+
+        assertEquals(sizeBeforeMessagePosted, sizeAfterMessagePosted);
+    }
+
     //
     private User joinUser() {
         return userService.addNewUser("AnyName");
