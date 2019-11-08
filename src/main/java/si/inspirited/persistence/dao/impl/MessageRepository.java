@@ -20,7 +20,7 @@ public class MessageRepository implements IMessageRepository {
     public Message addNewMessage(String userName, String content) {
         Message res;
         if (content != null && !"".equals(content.trim()) && userName != null && !"".equals(userName.trim())) {
-            res = new Message(content, userName);
+            res = new Message(userName, content);
             this.postedMessages.put(res.id, res);       //this id should be inserted to user.history
         }
         else {  res = new Message(); }

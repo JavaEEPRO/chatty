@@ -24,8 +24,8 @@ public class MessageRepositoryTests {
     public void addNewMessage_whenReturnsExpectedMessage_thenCorrect() {
         String content = "hello test";
         String userName = "AnyUserName";
-        Message message = new Message(content, userName);
-        Message returnedMessage = messageRepository.addNewMessage(content, userName);
+        Message message = new Message(userName, content);
+        Message returnedMessage = messageRepository.addNewMessage(userName, content);
         message.id = returnedMessage.id = "casted_id";
         assertEquals(message, returnedMessage);
     }
@@ -34,8 +34,8 @@ public class MessageRepositoryTests {
     public void addTwoMessagesWithSameContent_ifReceivedMapWithExpectedMessages_thenCorrect() {
         String content = "duplicated content";
         String userName = "AnyUserName";
-        Message message_1 = messageRepository.addNewMessage(content, userName);
-        Message message_2 = messageRepository.addNewMessage(content, userName);
+        Message message_1 = messageRepository.addNewMessage(userName, content);
+        Message message_2 = messageRepository.addNewMessage(userName, content);
 
         Map<String, Message> res = messageRepository.getAllMessages();
         Message messageReceived_1 = res.get(message_1.id);
@@ -66,7 +66,7 @@ public class MessageRepositoryTests {
     public void populateMessageStorage_whenReceivedSortedByLocalDateTime_thenCorrect() {
         boolean areSorted = true;
         for (int i = 0; i < 12; i++) {
-            messageRepository.addNewMessage("test message, one of couple (" + i + " of douzen)", "AnyUserName");
+            messageRepository.addNewMessage("AnyUserName", "test message, one of couple (" + i + " of dozen)");
         }
         List<Message> res = messageRepository.getAllSortedMessages();
         for (int i = 0; i < 11; i++) {

@@ -16,7 +16,7 @@ public class Message {
         this.interlocutorsName = "";
     }
 
-    public Message(String content, String userName) {
+    public Message(String userName, String content) {
         this.id = MessageUtil.generateMessageId();
         this.content = content;
         this.posted = LocalDateTime.now();
