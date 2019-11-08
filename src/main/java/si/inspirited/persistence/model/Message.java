@@ -13,7 +13,7 @@ public class Message {
     public Message() {
         this.id = MessageUtil.generateMessageId();
         this.posted = LocalDateTime.now();
-        this.opponentName = "";
+        this.interlocutorsName = "";
     }
 
     public Message(String content, String userName) {
@@ -21,7 +21,7 @@ public class Message {
         this.content = content;
         this.posted = LocalDateTime.now();
         this.userName = userName;
-        this.opponentName = "";
+        this.interlocutorsName = "";
     }
 
     public String id;
@@ -32,7 +32,7 @@ public class Message {
 
     String userName;
 
-    public String opponentName;
+    public String interlocutorsName;
 
     //
 
