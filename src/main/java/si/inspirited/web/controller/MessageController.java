@@ -25,7 +25,7 @@ public class MessageController {
     @Autowired
     IMessageService messageService;
 
-    @RequestMapping(value = { "/messages", "/messages/{name}" }, method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
+    @RequestMapping(value = { "", "/", "/messages", "/messages/{name}" }, method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
     @ResponseBody
     public List<Message> getSortedMessagesList(@PathVariable
                                                            Optional<String> name) {
@@ -47,6 +47,18 @@ public class MessageController {
         return new RedirectView("/messages");
     }
 
+    @RequestMapping(value = { "/messages/{name}/to/{interlocutor}/say/{content}" }, method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
+    @ResponseBody
+    public RedirectView addressedMessage(@PathVariable
+                                             final String name,
+
+                                         @PathVariable
+                                         final String interlocutor,
+
+                                         @PathVariable
+                                             final String content) {
+        return new RedirectView("/messages");
+    }
 
     //
     private boolean isUserPresent(String name) {

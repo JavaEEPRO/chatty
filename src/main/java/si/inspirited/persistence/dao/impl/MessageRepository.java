@@ -44,6 +44,12 @@ public class MessageRepository implements IMessageRepository {
     }
 
     @Override
+    public Message getMessageById(String id) {
+        if (id == null || "".equals(id.trim())) { return new Message(); }
+        return this.postedMessages.get(id);
+    }
+
+    @Override
     public void refreshMessagesStorage() {
         this.postedMessages = new ConcurrentHashMap<>(10);
     }

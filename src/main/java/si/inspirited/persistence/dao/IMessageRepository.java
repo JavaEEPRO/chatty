@@ -13,5 +13,7 @@ public interface IMessageRepository {
 
     List<Message> getAllSortedMessages();
 
+    Message getMessageById(String id);
+
     void refreshMessagesStorage();
 }

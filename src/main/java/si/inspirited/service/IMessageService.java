@@ -14,5 +14,7 @@ public interface IMessageService {
 
     List<Message> getAllSortedMessages();
 
+    Message getMessageById(String id);
+
     void refreshMessagesStorage();
 }

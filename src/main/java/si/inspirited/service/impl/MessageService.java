@@ -35,4 +35,9 @@ public class MessageService implements IMessageService {
     public void refreshMessagesStorage() {
         messageRepository.refreshMessagesStorage();
     }
+
+    @Override
+    public Message getMessageById(String id) {
+        return messageRepository.getMessageById(id);
+    }
 }
