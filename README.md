@@ -1,4 +1,7 @@
 # chatty
+
+    start script:     java -jar target\chatty.jar
+
 simple chat - test task "simple web app"
 
 1. REST API
