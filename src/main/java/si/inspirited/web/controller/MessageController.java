@@ -41,7 +41,7 @@ public class MessageController {
                                      final String content) {
         Message message;
         if (isUserPresent(name)) {
-            message = messageService.addNewMessage(content, name);
+            message = messageService.addNewMessage(name, content);
             userService.addHistoryEntry(name, message.id);
         }
         return new RedirectView("/messages");

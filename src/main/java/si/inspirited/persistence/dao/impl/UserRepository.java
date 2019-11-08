@@ -58,4 +58,13 @@ public class UserRepository implements IUserRepository {
             this.loggedUsers.put(userName, user);
         }
     }
+
+    @Override
+    public User getUserByUsername(String name) {
+        if (name == null || "".equals(name.trim())) {
+            return this.loggedUsers.values().parallelStream().findAny().orElse(new User());
+        }
+        if (this.loggedUsers.containsKey(name)) { return this.loggedUsers.get(name); }
+        return new User();
+    }
 }

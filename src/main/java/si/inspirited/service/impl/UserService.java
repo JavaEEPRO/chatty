@@ -37,4 +37,9 @@ public class UserService implements IUserService {
     public void addHistoryEntry(String userName, String messageId) {
         userRepository.addHistoryEntry(userName, messageId);
     }
+
+    @Override
+    public User getUserByUsername(String name) {
+        return userRepository.getUserByUsername(name);
+    }
 }

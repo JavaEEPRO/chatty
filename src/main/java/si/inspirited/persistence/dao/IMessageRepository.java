@@ -7,7 +7,7 @@ import java.util.Map;
 
 public interface IMessageRepository {
 
-    Message addNewMessage(String content, String userName);
+    Message addNewMessage(String userName, String content);
 
     Map<String, Message> getAllMessages();
 

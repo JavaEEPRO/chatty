@@ -8,7 +8,7 @@ import java.util.Map;
 
 public interface IMessageService {
 
-    Message addNewMessage(String content, String userName);
+    Message addNewMessage(String userName, String content);
 
     Map<String, Message> getAllMessages();
 
