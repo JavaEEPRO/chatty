@@ -28,7 +28,7 @@ public class MessageServiceTests {
     public void sendMessage_whenReturnedMapWithGivenMessage_thenCorrect() {
         String content = "hello test";
         String stubUserName = "SomeUser";
-        messageService.addNewMessage(content, stubUserName);
+        messageService.addNewMessage(stubUserName, content);
         Map<String, Message> res = messageService.getAllMessages();
         List<Message> values = new ArrayList<>(res.values());
         assertEquals(values.size(), 1);

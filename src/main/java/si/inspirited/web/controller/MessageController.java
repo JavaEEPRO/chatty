@@ -61,6 +61,7 @@ public class MessageController {
         if (name != null && interlocutor != null && content != null && isUserPresent(name) && isUserPresent(interlocutor)) {
             message = messageService.addNewMessage(name, interlocutor, content);
             userService.addHistoryEntry(name, message.id);
+            userService.setInterlocutor(name, interlocutor);
         }
         return new RedirectView("/messages");
     }

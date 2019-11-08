@@ -19,6 +19,11 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public User getUserByUsername(String name) {
+        return userRepository.getUserByUsername(name);
+    }
+
+    @Override
     public boolean detachUser(String name) {
         return userRepository.removeUser(name);
     }
@@ -39,7 +44,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User getUserByUsername(String name) {
-        return userRepository.getUserByUsername(name);
+    public void setInterlocutor(String userName, String interlocutor) {
+        userRepository.setInterlocutor(userName, interlocutor);
     }
 }

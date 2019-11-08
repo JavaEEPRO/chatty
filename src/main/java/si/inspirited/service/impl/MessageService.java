@@ -27,6 +27,11 @@ public class MessageService implements IMessageService {
     }
 
     @Override
+    public Message getMessageById(String id) {
+        return messageRepository.getMessageById(id);
+    }
+
+    @Override
     public Map<String, Message> getAllMessages() {
         return messageRepository.getAllMessages();
     }
@@ -41,8 +46,5 @@ public class MessageService implements IMessageService {
         messageRepository.refreshMessagesStorage();
     }
 
-    @Override
-    public Message getMessageById(String id) {
-        return messageRepository.getMessageById(id);
-    }
+
 }

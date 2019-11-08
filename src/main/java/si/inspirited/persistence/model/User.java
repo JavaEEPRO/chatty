@@ -21,7 +21,7 @@ public class User {
 
     public String name;
 
-    User interlocutor;
+    public String interlocutor;
 
     public List<String> history;
 

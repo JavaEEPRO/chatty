@@ -8,6 +8,8 @@ public interface IUserService {
 
     User addNewUser(String name);
 
+    User getUserByUsername(String name);
+
     boolean detachUser(String name);
 
     Map<String, User> getAllUsers();
@@ -16,5 +18,5 @@ public interface IUserService {
 
     void addHistoryEntry(String userName, String messageId);
 
-    User getUserByUsername(String name);
+    void setInterlocutor(String userName, String interlocutor);
 }

@@ -12,11 +12,13 @@ public interface IMessageService {
 
     Message addNewMessage(String userName, String interlocutor, String content);
 
+    Message getMessageById(String id);
+
     Map<String, Message> getAllMessages();
 
     List<Message> getAllSortedMessages();
 
-    Message getMessageById(String id);
+
 
     void refreshMessagesStorage();
 }

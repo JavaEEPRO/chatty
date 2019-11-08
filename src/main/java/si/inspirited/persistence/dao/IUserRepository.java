@@ -8,6 +8,8 @@ public interface IUserRepository {
 
     User addNewUser(String name);
 
+    User getUserByUsername(String name);
+
     Map<String, User> getAllUsers();
 
     void refreshUsersStorage();
@@ -16,5 +18,5 @@ public interface IUserRepository {
 
     void addHistoryEntry(String userName, String messageId);
 
-    User getUserByUsername(String name);
+    void setInterlocutor(String userName, String interlocutorsName);
 }

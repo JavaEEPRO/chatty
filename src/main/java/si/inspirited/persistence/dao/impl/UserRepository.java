@@ -32,6 +32,15 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
+    public User getUserByUsername(String name) {
+        if (name == null || "".equals(name.trim())) {
+            return this.loggedUsers.values().parallelStream().findAny().orElse(new User());
+        }
+        if (this.loggedUsers.containsKey(name)) { return this.loggedUsers.get(name); }
+        return new User();
+    }
+
+    @Override
     public Map<String, User> getAllUsers() {
         return this.loggedUsers;
     }
@@ -60,11 +69,12 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
-    public User getUserByUsername(String name) {
-        if (name == null || "".equals(name.trim())) {
-            return this.loggedUsers.values().parallelStream().findAny().orElse(new User());
+    public void setInterlocutor(String userName, String interlocutorsName) {
+        if (userName != null && !"".equals(userName.trim()) && interlocutorsName != null && !"".equals(interlocutorsName.trim())) {
+            User user = this.loggedUsers.get(userName);
+            this.loggedUsers.remove(userName);
+            user.interlocutor = interlocutorsName;
+            this.loggedUsers.put(userName, user);
         }
-        if (this.loggedUsers.containsKey(name)) { return this.loggedUsers.get(name); }
-        return new User();
     }
 }
