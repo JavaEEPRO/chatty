@@ -15,10 +15,7 @@ import si.inspirited.service.IMessageService;
 import si.inspirited.service.IUserService;
 import si.inspirited.service.impl.UserService;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 import static si.inspirited.web.util.UserUtil.generateUserName;
 
@@ -49,7 +46,7 @@ public class UserController {
     @ResponseBody
     public User successfullyJoined(@PathVariable
                                    Optional<String> name) {
-        messageService.addNewMessage("joined: Hello everybody!", currentUser.name);
+        messageService.addNewMessage(currentUser.name, "joined: Hello everybody!");
 
         return currentUser;
     }
@@ -60,11 +57,9 @@ public class UserController {
                                      Optional<String> name) {
         Map<String, User> res = userService.getAllUsers();
         List<User> toList;
+        String strName = name.orElse("");
         if (!"".equals(name.orElse("").trim())) {
-            if (res.containsKey(name)) {
-                res.remove(name);
-
-            }
+            res.remove(strName);
         }
         toList = new ArrayList<>(res.values());
         return toList;
