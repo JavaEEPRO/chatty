@@ -71,6 +71,18 @@ public class MessageControllerTests {
         assertEquals(message.interlocutorsName, interlocutor.name);
     }
 
+    @Test
+    public void sayAddressedMessageIfUsersAreNotRegistered_whenReceivedMessagesListSizeIsUnchanged_thenCorrect() {
+        String content = "message from unauthorized user";
+        String unauthorizedUserName = "OuterUser";
+        String unauthorizedInterlocutorsName = "OuterInterlocutor";
+        Integer sizeBeforeMessagePosted = messageController.getSortedMessagesList(Optional.of("")).size();
+        messageController.addressedMessage(unauthorizedUserName, unauthorizedInterlocutorsName, content);
+        Integer sizeAfterMessagePosted = messageController.getSortedMessagesList(Optional.of("")).size();
+
+        assertEquals(sizeBeforeMessagePosted, sizeAfterMessagePosted);
+    }
+
     //
     private User joinUser() {
         return userService.addNewUser("AnyName");
