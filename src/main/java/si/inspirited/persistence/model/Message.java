@@ -24,6 +24,11 @@ public class Message {
         this.interlocutorsName = "";
     }
 
+    public Message(String userName, String interlocutorsName, String content) {
+        this(userName, content);
+        this.interlocutorsName = interlocutorsName;
+    }
+
     public String id;
 
     public LocalDateTime posted;

@@ -10,6 +10,8 @@ public interface IMessageService {
 
     Message addNewMessage(String userName, String content);
 
+    Message addNewMessage(String userName, String interlocutor, String content);
+
     Map<String, Message> getAllMessages();
 
     List<Message> getAllSortedMessages();

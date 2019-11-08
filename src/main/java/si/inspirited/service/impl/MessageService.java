@@ -22,6 +22,11 @@ public class MessageService implements IMessageService {
     }
 
     @Override
+    public Message addNewMessage(String userName, String interlocutor, String content) {
+        return messageRepository.addNewMessage(userName, interlocutor, content);
+    }
+
+    @Override
     public Map<String, Message> getAllMessages() {
         return messageRepository.getAllMessages();
     }
