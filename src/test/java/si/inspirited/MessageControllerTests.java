@@ -11,6 +11,7 @@ import si.inspirited.service.IMessageService;
 import si.inspirited.service.IUserService;
 import si.inspirited.web.controller.MessageController;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
@@ -92,6 +93,22 @@ public class MessageControllerTests {
         Integer sizeAfterMessagePosted = messageController.getSortedMessagesList(Optional.of("")).size();
 
         assertEquals(sizeBeforeMessagePosted, sizeAfterMessagePosted);
+    }
+
+    @Test
+    public void sayAddressedMessage_ThenCommonMessage_whenUsersInterlocutorInLastMessageIsEmpty_thenCorrect() {
+        String addressedContent = "this is addressed message, it has interlocutor";
+        String commonContent = "this is NOT addressed message, it has NO interlocutor";
+        User sender = joinUser();
+        User interlocutor = joinUser();
+        messageController.addressedMessage(sender.name, interlocutor.name, addressedContent);
+        messageController.postMessage(sender.name, commonContent);
+
+        List<Message> res = messageController.getSortedMessagesList(Optional.of(sender.name));
+        Message message_1 = res.get(0);
+        Message message_2 = res.get(1);
+
+        assertNotEquals(message_1.interlocutorsName, message_2.interlocutorsName);
     }
 
     //

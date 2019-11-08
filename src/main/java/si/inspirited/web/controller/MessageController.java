@@ -58,7 +58,7 @@ public class MessageController {
                                          @PathVariable
                                              final String content) {
         Message message;
-        if (name != null && interlocutor != null && content != null && isUserPresent(name) && isUserPresent(interlocutor)) {
+        if (name != null && interlocutor != null && content != null && isUserPresent(name) && isUserPresent(interlocutor) && !name.equals(interlocutor)) {
             message = messageService.addNewMessage(name, interlocutor, content);
             userService.addHistoryEntry(name, message.id);
             userService.setInterlocutor(name, interlocutor);
