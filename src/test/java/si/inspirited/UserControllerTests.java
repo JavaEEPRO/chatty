@@ -1,5 +1,6 @@
 package si.inspirited;
 
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,12 @@ public class UserControllerTests {
         assertEquals(res.size(), 11);
     }
 
+    @After
+    public void refreshUsersStorage() {
+        userService.refreshUsersStorage();
+    }
+
+    //
     private void populateUserStorage() {
         Optional<String> optionalName = Optional.of("AnyUser");
         for (int i = 0; i < 12; i++) {

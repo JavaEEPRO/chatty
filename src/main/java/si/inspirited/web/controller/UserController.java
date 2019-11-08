@@ -56,12 +56,16 @@ public class UserController {
     public List<User> getAllLoggedIn(@PathVariable
                                      Optional<String> name) {
         Map<String, User> res = userService.getAllUsers();
-        List<User> toList;
+        List<User> toList = new ArrayList<>();
         String strName = name.orElse("");
         if (!"".equals(name.orElse("").trim())) {
-            res.remove(strName);
+            for (Map.Entry<String, User> user : res.entrySet()) {
+                if (!user.getKey().equals(strName)) {
+                    toList.add(user.getValue());
+                }
+            }
         }
-        toList = new ArrayList<>(res.values());
+        else {  toList = new ArrayList<>(res.values()); }
         return toList;
     }
 }
